@@ -1,21 +1,8 @@
 ```
-docker pull ubuntu 
-# this node docker image installed git as well
-docker images
-docker run -itd --name d3_container ff0fea8310f3 /bin/bash
-docker exec -it e37 /bin/bash
+docker build -t d3_project .
+docker run -itd d3_project /bin/bash
+docker exec -it $(docker ps | grep -E 'd3_project' | awk '{print $1}' | awk 'NR==1') /bin/bash
 
-apt-get update
-apt-get upgrade
-apt-get install sudo
-apt-get install git
-apt-get install wget
-apt-get install -y git-core curl build-essential openssl libssl-dev \
- && git clone https://github.com/nodejs/node.git \
- && cd node \
- && ./configure \
- && make \
- && sudo make install
 ```
 
 ### Web

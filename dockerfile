@@ -14,5 +14,4 @@ RUN apt-get install npm -y
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x 
 RUN sudo -E bash 
 RUN sudo apt-get install -y nodejs
-RUN npm install -g npm
-RUN npm install -g typescript ts-node
+
