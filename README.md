@@ -2,7 +2,7 @@
 docker build -t d3_project .
 
 docker stop  $(docker ps | grep -E 'd3_project' | awk '{print $1}' | awk 'NR==1') && docker rm  $(docker ps | grep -E 'd3_project' | awk '{print $1}' | awk 'NR==1')
-docker run -v ~/Desktop/d3_project:/d3_project -itd d3_project /bin/bash
+docker run -v ~/Desktop/d3_project:/d3_project -p 1234:1234 -itd d3_project /bin/bash 
 docker exec -it $(docker ps | grep -E 'd3_project' | awk '{print $1}' | awk 'NR==1') /bin/bash
 
 ```
