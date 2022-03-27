@@ -16,11 +16,9 @@ npm install -g typescript ts-node
 ```
 
 2. install prettier plugins
-
-
-
-
+```
 npm install -g parcel-bundler
+```
 
 # d3_project
 
