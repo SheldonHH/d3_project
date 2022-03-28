@@ -17,4 +17,7 @@ RUN sudo apt-get install -y nodejs
 RUN npm install -g typescript ts-node
 RUN npm install -g parcel-bundler
 RUN npm install -g json-server
+RUN npm cache clean -f
+RUN npm install -g n
+RUN n stable
 

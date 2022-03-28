@@ -1699,7 +1699,7 @@ module.exports.default = axios;
 
 },{"./utils":"node_modules/axios/lib/utils.js","./helpers/bind":"node_modules/axios/lib/helpers/bind.js","./core/Axios":"node_modules/axios/lib/core/Axios.js","./defaults":"node_modules/axios/lib/defaults.js","./cancel/Cancel":"node_modules/axios/lib/cancel/Cancel.js","./cancel/CancelToken":"node_modules/axios/lib/cancel/CancelToken.js","./cancel/isCancel":"node_modules/axios/lib/cancel/isCancel.js","./helpers/spread":"node_modules/axios/lib/helpers/spread.js"}],"node_modules/axios/index.js":[function(require,module,exports) {
 module.exports = require('./lib/axios');
-},{"./lib/axios":"node_modules/axios/lib/axios.js"}],"src/index.ts":[function(require,module,exports) {
+},{"./lib/axios":"node_modules/axios/lib/axios.js"}],"src/models/User.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -1711,15 +1711,94 @@ var __importDefault = this && this.__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.User = void 0;
 
-var axios_1 = __importDefault(require("axios"));
+var axios_1 = __importDefault(require("axios")); // no types and no return value
 
-axios_1.default.get('http://localhost:3000/users/1');
-axios_1.default.post('http://localhost:3000/users', {
-  name: 'myname',
+
+var User =
+/** @class */
+function () {
+  function User(data) {
+    this.data = data;
+  }
+
+  User.prototype.get = function (propName) {
+    return this.data[propName];
+  }; // set(update: UserProps): void {
+  //   Object.assign(this.data, update);
+  //   // overwrite all values in this.data
+  // }
+  // Use type alias to represent () => {}
+
+
+  User.prototype.on = function (eventName, callback) {
+    // this.events[eventName] // return either Callback[] or undefined
+    var handlers = this.events[eventName] || [];
+    handlers.push(callback);
+    this.events[eventName] = handlers;
+  };
+
+  User.prototype.trigger = function (eventName) {
+    console;
+    hanlders = this.events[eventName]; // can be either array or undefined
+
+    if (!handlers || handlers.length == 0) {
+      return;
+    }
+
+    handlers.forEach(function (callback) {
+      callback();
+    });
+  };
+
+  User.prototype.fetch = function () {
+    var _this = this;
+
+    axios_1.default.get("http://localhost:3000/users/$}{this.get('id')}".then(function (response) {
+      _this.set(response.data);
+    }));
+  };
+
+  User.prototype.save = function () {
+    var id = this.get('id');
+
+    if (id) {
+      axios_1.default.put("http://localhost:3000/users/".concat(id), this.data);
+    } else {
+      axios_1.default.post('http://localhost:3000/users', this.data);
+    }
+  };
+
+  return User;
+}();
+
+exports.User = User;
+},{"axios":"node_modules/axios/index.js"}],"src/index.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+}); // import axios from 'axios';
+
+var User_1 = require("./models/User"); // const user = new User({ id: 1 });
+
+
+var user = new User_1.User({
+  name: 'new record',
   age: 20
 });
-},{"axios":"node_modules/axios/index.js"}],"../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+user.save(); // user.fetch();
+// setTimeout(() => {
+//   console.log(user);
+// }, 4000)
+// after fetch() you should be able to see our given properties
+// axios.get('http://localhost:3000/users/1');
+// axios.post('http://localhost:3000/users', {
+//   name: 'myname',
+//   age: 20
+// });
+},{"./models/User":"src/models/User.ts"}],"../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -1747,7 +1826,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44071" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45559" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
