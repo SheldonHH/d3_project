@@ -1714,6 +1714,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var axios_1 = __importDefault(require("axios"));
 
+axios_1.default.get('http://localhost:3000/users/1');
 axios_1.default.post('http://localhost:3000/users', {
   name: 'myname',
   age: 20
