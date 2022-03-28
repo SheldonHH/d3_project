@@ -20,8 +20,11 @@ export class User {
   //   // overwrite all values in this.data
   // }
   // Use type alias to represent () => {}
-  on(eventName: string, callback: Callback) {
-
+  on(eventName: string, callback: Callback): void {
+    // this.events[eventName] // return either Callback[] or undefined
+    const handlers = this.events[eventName] || [];
+    handlers.push(callback);
+    this.events[eventName] = handlers;
   }
 
 }

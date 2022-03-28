@@ -141,7 +141,12 @@ function () {
   // Use type alias to represent () => {}
 
 
-  User.prototype.on = function (eventName, callback) {};
+  User.prototype.on = function (eventName, callback) {
+    // this.events[eventName] // return either Callback[] or undefined
+    var handlers = this.events[eventName] || [];
+    handlers.push(callback);
+    this.events[eventName] = handlers;
+  };
 
   return User;
 }();
@@ -159,7 +164,12 @@ var User_1 = require("./models/User");
 var user = new User_1.User({
   name: 'myname',
   age: 20
-});
+}); // insert first function change
+
+user.on('change', function () {});
+user.on('change', function () {});
+user.on('randomzie', function () {});
+console.log(user);
 console.log(user.get('name'));
 console.log(user.get('age')); // console.log("singapore")
 },{"./models/User":"src/models/User.ts"}],"../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
