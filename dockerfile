@@ -16,4 +16,5 @@ RUN sudo -E bash
 RUN sudo apt-get install -y nodejs
 RUN npm install -g typescript ts-node
 RUN npm install -g parcel-bundler
+RUN npm install -g json-server
 

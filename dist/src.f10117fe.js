@@ -148,6 +148,19 @@ function () {
     this.events[eventName] = handlers;
   };
 
+  User.prototype.trigger = function (eventName) {
+    console;
+    hanlders = this.events[eventName]; // can be either array or undefined
+
+    if (!handlers || handlers.length == 0) {
+      return;
+    }
+
+    handlers.forEach(function (callback) {
+      callback();
+    });
+  };
+
   return User;
 }();
 
@@ -166,9 +179,17 @@ var user = new User_1.User({
   age: 20
 }); // insert first function change
 
-user.on('change', function () {});
-user.on('change', function () {});
-user.on('randomzie', function () {});
+user.on('change', function () {
+  console.log('Change #1');
+});
+user.on('change', function () {
+  console.log('Change #2');
+});
+user.on('save', function () {
+  console.log('Save was triggered');
+});
+user.trigger('change');
+user.trigger('save');
 console.log(user);
 console.log(user.get('name'));
 console.log(user.get('age')); // console.log("singapore")
@@ -200,7 +221,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43971" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36947" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

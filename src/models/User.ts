@@ -27,4 +27,15 @@ export class User {
     this.events[eventName] = handlers;
   }
 
+  trigger(eventName: string): void {
+    console hanlders = this.events[eventName]; // can be either array or undefined
+    if (!handlers || handlers.length == 0) {
+      return;
+    }
+
+    handlers.forEach(callback => {
+      callback();
+    })
+  }
+
 }
