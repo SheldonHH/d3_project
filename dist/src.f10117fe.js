@@ -123,8 +123,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.User = void 0; // const user = new User({ name: 'myname', age: 20 });
-// user.set({ name: 'newname', age: 99999 })
+exports.User = void 0; // no types and no return value
 
 var User =
 /** @class */
@@ -135,7 +134,14 @@ function () {
 
   User.prototype.get = function (propName) {
     return this.data[propName];
-  };
+  }; // set(update: UserProps): void {
+  //   Object.assign(this.data, update);
+  //   // overwrite all values in this.data
+  // }
+  // Use type alias to represent () => {}
+
+
+  User.prototype.on = function (eventName, callback) {};
 
   return User;
 }();
