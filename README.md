@@ -43,3 +43,8 @@ docker images
 docker run -it --name d3_container ba17ecfd099c /bin/bash
 
 ```
+
+Composition of Classes
+1. class for storing
+2. eventing logic when some data is changed [difficult]
+3. presistance
